@@ -8,12 +8,12 @@
 import XCTest
 import EssentialFeed
 
-class RemoteFeedLoaderTests: XCTest {
+class RemoteFeedLoaderTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
         
-        XCTAssertTrue(!client.requestedURLs.isEmpty)
+        XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
     func test_load_requestsDataFromURL() {
@@ -30,7 +30,7 @@ class RemoteFeedLoaderTests: XCTest {
         let (sut, client) = makeSUT(url: url)
         
         sut.load()
-        // sut.load()
+        sut.load()
         
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
