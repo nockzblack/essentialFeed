@@ -38,7 +38,7 @@ class RemoteFeedLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWithResult: .failure(RemoteFeedLoader.Error.connectivity)) {
+        expect(sut, toCompleteWithResult: failure(.connectivity)) {
             let clientError = NSError(domain: "Test", code: 0)
             client.complete(with: clientError)
         }
@@ -49,7 +49,7 @@ class RemoteFeedLoaderTests: XCTestCase {
         
         let samples = [199, 201, 300, 400, 500]
          samples.enumerated().forEach { index, code in
-             expect(sut, toCompleteWithResult: .failure(RemoteFeedLoader.Error.invalidData)) {
+             expect(sut, toCompleteWithResult: failure(.invalidData)) {
                  let json = makeItemsJSON([])
                  client.complete(withStatusCode: code, data: json, at: index)
              }
@@ -59,7 +59,7 @@ class RemoteFeedLoaderTests: XCTestCase {
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWithResult: .failure(RemoteFeedLoader.Error.invalidData)) {
+        expect(sut, toCompleteWithResult: failure(.invalidData)) {
             let invalidJSON = Data("invalid json".utf8)
             client.complete(withStatusCode: 200, data: invalidJSON)
         }
@@ -117,12 +117,15 @@ class RemoteFeedLoaderTests: XCTestCase {
         return (sut, client)
     }
     
+    private func failure(_ error: RemoteFeedLoader.Error) -> RemoteFeedLoader.Result {
+        return .failure(error)
+    }
+    
     private func trackFroMemoryLeaks(_ isntance: AnyObject, file: StaticString = #file, line: UInt = #line) {
         addTeardownBlock { [weak isntance] in
             XCTAssertNil(isntance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
         }
     }
-    
     
     private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
         let json = ["items" : items]
