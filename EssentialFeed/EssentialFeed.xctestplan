@@ -4,7 +4,7 @@
       "id" : "3C3550F9-3C86-4FCD-91AE-AFB8DFC97F65",
       "name" : "Configuration 1",
       "options" : {
-        "threadSanitizerEnabled" : false
+
       }
     }
   ],
