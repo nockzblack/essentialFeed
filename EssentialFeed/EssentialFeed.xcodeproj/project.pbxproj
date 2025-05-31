@@ -54,10 +54,10 @@
 		F7A6D7B22D84AAB700F10445 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"Feed API/CacheFeedUseCaseTests.swift",
 				"Feed API/Helpers/XCTestCase+MemoryLeakTracking.swift",
 				"Feed API/LoadFeedFromRemoteUseCaseTests.swift",
 				"Feed API/URLSessionHTTPClientTests.swift",
+				"Feed Cache/CacheFeedUseCaseTests.swift",
 			);
 			target = 080EDEF921B6DA7E00813479 /* EssentialFeedTests */;
 		};
