@@ -34,11 +34,11 @@ public final  class LocalFeedLoader {
     
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { error in 
-            
             if let error {
                 completion(.failure(error))
+            } else {
+                completion(.success([]))
             }
-            
         }
     }
     
