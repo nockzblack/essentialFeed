@@ -129,18 +129,15 @@ class CacheFeedUseCaseTests: XCTestCase {
     }
     
     private class FeedStoreSpy: FeedStore {
-        
-        
-        typealias DeletionCompletion = (Error?) -> Void
-        typealias InsertionCompletion = (Error?) -> Void
-        
         enum ReceivedMessage: Equatable {
             case deleteCacheFeed
             case insert([LocalFeedImage], Date)
         }
         
-        private(set) var receivedMessages = [ReceivedMessage]()
+        typealias DeletionCompletion = (Error?) -> Void
+        typealias InsertionCompletion = (Error?) -> Void
         
+        private(set) var receivedMessages = [ReceivedMessage]()
         private var deletionCompletions = [DeletionCompletion]()
         private var insertionCompletions = [InsertionCompletion]()
         
