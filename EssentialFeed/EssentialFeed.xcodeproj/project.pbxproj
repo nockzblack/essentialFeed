@@ -57,6 +57,7 @@
 				"Feed API/LoadFeedFromRemoteUseCaseTests.swift",
 				"Feed API/URLSessionHTTPClientTests.swift",
 				"Feed Cache/CacheFeedUseCaseTests.swift",
+				"Feed Cache/Helpers/FeedStoreSpy.swift",
 				"Feed Cache/LoadFeedFromCacheUseCaseTests.swift",
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
 			);
