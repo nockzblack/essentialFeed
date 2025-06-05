@@ -59,6 +59,7 @@
 				"Feed Cache/CacheFeedUseCaseTests.swift",
 				"Feed Cache/Helpers/FeedStoreSpy.swift",
 				"Feed Cache/LoadFeedFromCacheUseCaseTests.swift",
+				"Feed Cache/ValidateFeedCacheUseCaseTests.swift",
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
 			);
 			target = 080EDEF921B6DA7E00813479 /* EssentialFeedTests */;
