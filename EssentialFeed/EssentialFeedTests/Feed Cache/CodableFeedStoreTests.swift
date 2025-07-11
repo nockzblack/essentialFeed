@@ -137,8 +137,8 @@ class CodableFeedStoreTests: XCTestCase {
         }
         
         let op2 = expectation(description: "Operation 2")
-        completedOperationInOrder.append(op2)
         sut.deleteCacheFeed() { _ in
+            completedOperationInOrder.append(op2)
             op2.fulfill()
         }
         
