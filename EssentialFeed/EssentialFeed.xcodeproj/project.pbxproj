@@ -59,6 +59,7 @@
 				"Feed API/URLSessionHTTPClientTests.swift",
 				"Feed Cache/CacheFeedUseCaseTests.swift",
 				"Feed Cache/CodableFeedStoreTests.swift",
+				"Feed Cache/CoreDataFeedStoreTests.swift",
 				"Feed Cache/FeedStoreSpecs/FeedStoreSpecs.swift",
 				"Feed Cache/FeedStoreSpecs/XCTestCase+FailableDeleteFeedStoreSpecs.swift",
 				"Feed Cache/FeedStoreSpecs/XCTestCase+FailableInsertFeedStoreSpecs.swift",
