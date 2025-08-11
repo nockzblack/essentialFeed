@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="580" id="qyX-Ia-5Cn">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="580" id="qyX-Ia-5Cn" customClass="FeedImageCell" customModule="Prototype" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="580"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qyX-Ia-5Cn" id="2IC-hb-Wxi">
@@ -96,6 +96,12 @@
                                         <constraint firstItem="AW1-ay-V82" firstAttribute="top" secondItem="2IC-hb-Wxi" secondAttribute="topMargin" priority="999" constant="6" id="lWC-c8-jef"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="0Vq-0D-fdb" id="2h3-fY-E59"/>
+                                    <outlet property="feedImageView" destination="jLr-YH-q0s" id="oau-HF-rfU"/>
+                                    <outlet property="locationContainer" destination="uN7-zI-dJu" id="PVw-19-Hje"/>
+                                    <outlet property="locationLabel" destination="cLI-o1-Nas" id="N55-Jm-C02"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
