@@ -39,6 +39,7 @@
 /* Begin PBXFileReference section */
 		080EDEF121B6DA7E00813479 /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		080EDEFA21B6DA7E00813479 /* EssentialFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3218B3AC2E4BF058000994C7 /* EssentialFeedAPIEndToEndTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EssentialFeedAPIEndToEndTests.xctestplan; sourceTree = "<group>"; };
 		32DD1D8E2E301AE100CF936D /* EssentialFeedCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F746A7082DC07216007CC255 /* EssentialFeedAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F746A7142DC07AFB007CC255 /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI.xctestplan; sourceTree = "<group>"; };
@@ -139,6 +140,7 @@
 		080EDEE721B6DA7E00813479 = {
 			isa = PBXGroup;
 			children = (
+				3218B3AC2E4BF058000994C7 /* EssentialFeedAPIEndToEndTests.xctestplan */,
 				F7BFE0C32DC27022000718B8 /* EssentialFeed.xctestplan */,
 				F746A7142DC07AFB007CC255 /* CI.xctestplan */,
 				F7A6D7A82D84AAB400F10445 /* EssentialFeed */,
@@ -682,6 +684,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.essentialdeveloper.EssentialFeedAPIEndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -705,6 +708,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.essentialdeveloper.EssentialFeedAPIEndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
