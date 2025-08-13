@@ -51,9 +51,10 @@
 		3218B4072E4BF24A000994C7 /* EssentialFeedCacheIntegrationTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EssentialFeedCacheIntegrationTests.xctestplan; sourceTree = "<group>"; };
 		3218B5C12E4D1817000994C7 /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3218B5CA2E4D1817000994C7 /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3218B6952E4D2679000994C7 /* CI_iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI_iOS.xctestplan; sourceTree = "<group>"; };
 		32DD1D8E2E301AE100CF936D /* EssentialFeedCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F746A7082DC07216007CC255 /* EssentialFeedAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F746A7142DC07AFB007CC255 /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI.xctestplan; sourceTree = "<group>"; };
+		F746A7142DC07AFB007CC255 /* CI_macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI_macOS.xctestplan; sourceTree = "<group>"; };
 		F7BFE0C32DC27022000718B8 /* EssentialFeed.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EssentialFeed.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,7 +172,8 @@
 				3218B4072E4BF24A000994C7 /* EssentialFeedCacheIntegrationTests.xctestplan */,
 				3218B3AC2E4BF058000994C7 /* EssentialFeedAPIEndToEndTests.xctestplan */,
 				F7BFE0C32DC27022000718B8 /* EssentialFeed.xctestplan */,
-				F746A7142DC07AFB007CC255 /* CI.xctestplan */,
+				F746A7142DC07AFB007CC255 /* CI_macOS.xctestplan */,
+				3218B6952E4D2679000994C7 /* CI_iOS.xctestplan */,
 				F7A6D7A82D84AAB400F10445 /* EssentialFeed */,
 				F7A6D7B02D84AAB700F10445 /* EssentialFeedTests */,
 				F746A7092DC07216007CC255 /* EssentialFeedAPIEndToEndTests */,
