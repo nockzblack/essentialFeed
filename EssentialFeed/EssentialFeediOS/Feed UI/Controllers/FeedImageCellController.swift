@@ -8,12 +8,13 @@
 import UIKit
 import EssentialFeed
 
-final class FeedImageViewModel {
+final class FeedImageViewModel<Image> {
     typealias Observer<T> = (T) -> Void
     
     private var task: FeedImageDataLoaderTask?
     private let model: FeedImage
     private let imageLoader: FeedImageDataLoader
+    private let imageTransformer: (Data) -> Image?
     
     var description: String? {
         return model.description
@@ -25,13 +26,14 @@ final class FeedImageViewModel {
         return location != nil
     }
     
-    var onImageLoad: Observer<UIImage>?
+    var onImageLoad: Observer<Image>?
     var onShouldRetryImageLoadStateChange: Observer<Bool>?
     var onImageLoadingStateChange: Observer<Bool>?
     
-    init(model: FeedImage, imageLoader: FeedImageDataLoader) {
+    init(model: FeedImage, imageLoader: FeedImageDataLoader, imageTransformer: @escaping (Data) -> Image?) {
         self.model = model
         self.imageLoader = imageLoader
+        self.imageTransformer = imageTransformer
     }
     
     func loadImageData() {
@@ -48,7 +50,7 @@ final class FeedImageViewModel {
     }
     
     private func handle(_ result: FeedImageDataLoader.Result) {
-        if let image = (try? result.get()).flatMap(UIImage.init) {
+        if let image = (try? result.get()).flatMap(imageTransformer) {
             onImageLoad?(image)
         } else {
             onShouldRetryImageLoadStateChange?(true)
@@ -59,9 +61,9 @@ final class FeedImageViewModel {
 
 final class FeedImageCellController {
     
-    private let viewModel: FeedImageViewModel
+    private let viewModel: FeedImageViewModel<UIImage>
     
-    init(viewModel: FeedImageViewModel) {
+    init(viewModel: FeedImageViewModel<UIImage>) {
         self.viewModel = viewModel
     }
     
