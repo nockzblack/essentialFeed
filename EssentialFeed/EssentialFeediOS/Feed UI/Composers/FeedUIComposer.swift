@@ -15,7 +15,7 @@ public final class FeedUIComposer {
         let presenter = FeedPresenter()
         let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: feedLoader, presenter: presenter)
         
-        let refreshController = FeedRefreshViewController(loadFeed: presentationAdapter.loadFeed)
+        let refreshController = FeedRefreshViewController(delegate: presentationAdapter)
         let feedController = FeedViewController(refreshController: refreshController)
         
         presenter.loadingView = WeakRefVirtualProxy(refreshController)
@@ -58,7 +58,7 @@ extension WeakRefVirtualProxy: FeedLoadingView where T: FeedLoadingView {
 }
 
 
-private final class FeedLoaderPresentationAdapter {
+private final class FeedLoaderPresentationAdapter: FeedRefreshControllerDelegate {
     private let feedLoader: FeedLoader
     private let presenter: FeedPresenter
     
@@ -67,7 +67,7 @@ private final class FeedLoaderPresentationAdapter {
         self.presenter = presenter
     }
     
-    func loadFeed() {
+    func didRequestFeedRefresh() {
         presenter.didStartLoadingFeed()
         
         feedLoader.load { [weak self] result in
