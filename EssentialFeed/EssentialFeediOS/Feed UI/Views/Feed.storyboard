@@ -67,6 +67,9 @@
                                                                 <fontDescription key="titleFontDescription" type="system" pointSize="60"/>
                                                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="retryButtonTapped" destination="qyX-Ia-5Cn" eventType="touchUpInside" id="KTg-lP-3dr"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -108,6 +111,14 @@
                                         <constraint firstItem="AW1-ay-V82" firstAttribute="top" secondItem="2IC-hb-Wxi" secondAttribute="topMargin" priority="999" constant="6" id="lWC-c8-jef"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="0Vq-0D-fdb" id="sqx-Ox-5qt"/>
+                                    <outlet property="feedImageContainer" destination="t7u-UK-im6" id="lfO-a4-uZX"/>
+                                    <outlet property="feedImageRetryButton" destination="v6R-3r-LU6" id="DGj-c6-61e"/>
+                                    <outlet property="feedImageView" destination="jLr-YH-q0s" id="kLf-9x-eY4"/>
+                                    <outlet property="locationContainer" destination="uN7-zI-dJu" id="8eH-4W-b83"/>
+                                    <outlet property="locationLabel" destination="cLI-o1-Nas" id="1O5-Tc-dma"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
