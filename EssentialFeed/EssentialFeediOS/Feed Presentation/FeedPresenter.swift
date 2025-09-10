@@ -32,7 +32,7 @@ final class FeedPresenter {
         self.feedView = feedView
     }
     
-static var title: String {
+    static var title: String {
         return "My Feed"
     }
         
