@@ -130,6 +130,7 @@
 				"Feed Cache/Helpers/FeedStoreSpy.swift",
 				"Feed Cache/LoadFeedFromCacheUseCaseTests.swift",
 				"Feed Cache/ValidateFeedCacheUseCaseTests.swift",
+				"Feed Presentation/FeedLocalizationTests.swift",
 				"Feed Presentation/FeedPresenterTests.swift",
 				Helpers/SharedTestHelpers.swift,
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
