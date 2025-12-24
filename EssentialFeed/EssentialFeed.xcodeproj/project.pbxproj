@@ -90,13 +90,6 @@
 			);
 			target = 3218B5C92E4D1817000994C7 /* EssentialFeediOSTests */;
 		};
-		32D4CA2C2EF97F810015B70D /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Feed Feature/FeedImageDataLoader.swift",
-			);
-			target = 3218B5C02E4D1817000994C7 /* EssentialFeediOS */;
-		};
 		32DD1D992E301DF500CF936D /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -117,7 +110,6 @@
 		F7A6D7AD2D84AAB400F10445 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"Feed Feature/FeedImageDataLoader.swift",
 				Info.plist,
 			);
 			target = 080EDEF021B6DA7E00813479 /* EssentialFeed */;
@@ -155,7 +147,7 @@
 		3218B5CE2E4D1817000994C7 /* EssentialFeediOSTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EssentialFeediOSTests; sourceTree = "<group>"; };
 		32DD1D8F2E301AE100CF936D /* EssentialFeedCacheIntegrationTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EssentialFeedCacheIntegrationTests; sourceTree = "<group>"; };
 		F746A7092DC07216007CC255 /* EssentialFeedAPIEndToEndTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EssentialFeedAPIEndToEndTests; sourceTree = "<group>"; };
-		F7A6D7A82D84AAB400F10445 /* EssentialFeed */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F7A6D7AD2D84AAB400F10445 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 32D4CA2C2EF97F810015B70D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = EssentialFeed; sourceTree = "<group>"; };
+		F7A6D7A82D84AAB400F10445 /* EssentialFeed */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F7A6D7AD2D84AAB400F10445 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = EssentialFeed; sourceTree = "<group>"; };
 		F7A6D7B02D84AAB700F10445 /* EssentialFeedTests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F7A6D7B22D84AAB700F10445 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, F746A7132DC07938007CC255 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 32DD1D992E301DF500CF936D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 321985B62E4FA4EA0058DFD4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = EssentialFeedTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
