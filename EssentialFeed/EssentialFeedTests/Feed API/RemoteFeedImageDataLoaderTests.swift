@@ -61,57 +61,19 @@ final class RemoteFeedImageDataLoaderTests: XCTestCase {
     
     func test_loadImageDataFromURL_deliverErrorOnClientError() {
         let (sut, client) = makeSUT()
-        let url = URL(string: "https://a-given-url.com")!
         let clientError = NSError(domain: "a client error", code: 0)
-        let exp = expectation(description: "Wait for load completion")
-        let expectedResult: FeedImageDataLoader.Result =  .failure(clientError)
         
-        sut.loadImageData(from: url) { receivedResult in
-            switch(expectedResult, receivedResult) {
-            
-            case let (.success(expectedData), .success(receivedData)):
-                XCTAssertEqual(expectedData, receivedData)
-                
-            case let (.failure(reivedError as NSError), .failure(expectedError as NSError)):
-                XCTAssertEqual(reivedError, expectedError)
-            default:
-                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead")
-            }
-            
-            exp.fulfill()
+        expect(sut, toCompleteWith: .failure(clientError)) {
+            client.complete(with: clientError)
         }
-        
-        client.complete(with: clientError)
-        
-        wait(for: [exp], timeout: 1.0)
     }
-    
-    // `RemoteFeedImageDataLoader.loadImageDataFromURL` delivers invalid data error on non-200 HTTP response
     
     func test_loadImgaeDataFromURL_deliversInvalidDataErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
-        let exp = expectation(description: "Wait for load completion")
-        let url = URL(string: "https://a-given-url.com")!
-        let expectedResult: FeedImageDataLoader.Result =  .failure(RemoteFeedImageDataLoader.Error.invalidData)
         
-        sut.loadImageData(from: url) { receivedResult in
-            switch(expectedResult, receivedResult) {
-                
-            case let (.success(expectedData), .success(receivedData)):
-                XCTAssertEqual(expectedData, receivedData)
-                
-            case let (.failure(reivedError as NSError), .failure(expectedError as NSError)):
-                XCTAssertEqual(reivedError, expectedError)
-            default:
-                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead")
-            }
-            
-            exp.fulfill()
+        expect(sut, toCompleteWith: .failure(RemoteFeedImageDataLoader.Error.invalidData)) {
+            client.complete(withStatusCode: 201, data: anyData())
         }
-        
-        client.complete(withStatusCode: 201, data: anyData())
-        
-        wait(for: [exp], timeout: 1.0)
     }
     
     // MARK: - Helpers
@@ -125,6 +87,34 @@ final class RemoteFeedImageDataLoaderTests: XCTestCase {
     
     private func anyData() -> Data {
         return Data("any data".utf8)
+    }
+    
+    private func expect(_ sut: RemoteFeedImageDataLoader, toCompleteWith expectedResult: FeedImageDataLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        let url = URL(string: "https://a-given-url.com")!
+        let exp = expectation(description: "Wait for load completion")
+        
+        sut.loadImageData(from: url) { receivedResult in
+            switch(expectedResult, receivedResult) {
+                
+            case let (.success(expectedData), .success(receivedData)):
+                XCTAssertEqual(expectedData, receivedData, file: file, line: line)
+                
+            case let (.failure(reivedError as RemoteFeedImageDataLoader.Error), .failure(expectedError as RemoteFeedImageDataLoader.Error)):
+                XCTAssertEqual(reivedError, expectedError, file: file, line: line)
+                
+            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
+                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+                
+            default:
+                XCTFail("Expected result: \(expectedResult) got: \(receivedResult) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
     }
     
     private class HTTPClientSpy: HTTPClient {
