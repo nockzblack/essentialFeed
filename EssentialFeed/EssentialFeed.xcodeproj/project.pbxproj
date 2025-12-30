@@ -120,7 +120,7 @@
 				"Feed API/Helpers/HTTPClientSpy.swift",
 				"Feed API/Helpers/URLProtocolStub.swift",
 				"Feed API/LoadFeedFromRemoteUseCaseTests.swift",
-				"Feed API/RemoteFeedImageDataLoaderTests.swift",
+				"Feed API/LoadFeedImageDataFromRemoteUseCaseTests.swift",
 				"Feed API/URLSessionHTTPClientTests.swift",
 				"Feed Cache/CacheFeedUseCaseTests.swift",
 				"Feed Cache/CodableFeedStoreTests.swift",
