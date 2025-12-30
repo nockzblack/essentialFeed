@@ -118,6 +118,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Feed API/Helpers/HTTPClientSpy.swift",
+				"Feed API/Helpers/URLProtocolStub.swift",
 				"Feed API/LoadFeedFromRemoteUseCaseTests.swift",
 				"Feed API/RemoteFeedImageDataLoaderTests.swift",
 				"Feed API/URLSessionHTTPClientTests.swift",
