@@ -123,6 +123,7 @@
 				"Feed API/LoadFeedFromRemoteUseCaseTests.swift",
 				"Feed API/LoadFeedImageDataFromRemoteUseCaseTests.swift",
 				"Feed API/URLSessionHTTPClientTests.swift",
+				"Feed Cache/CacheFeedImageDatauseCaseTests.swift",
 				"Feed Cache/CacheFeedUseCaseTests.swift",
 				"Feed Cache/CodableFeedStoreTests.swift",
 				"Feed Cache/CoreDataFeedStoreTests.swift",
