@@ -50,22 +50,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		327183AC2F130C3B00155248 /* Exceptions for "Helpers" folder in "EssentialApp" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				SharedTestHelpers.swift,
-				"XCTestCase+MemoryLeakTracking.swift",
-			);
-			target = 32C7F4FA2F0C908200FC9B96 /* EssentialApp */;
-		};
-		327183AD2F130C3B00155248 /* Exceptions for "Helpers" folder in "EssentialAppTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				SharedTestHelpers.swift,
-				"XCTestCase+MemoryLeakTracking.swift",
-			);
-			target = 327180AD2F114EC000155248 /* EssentialAppTests */;
-		};
 		32C7F50D2F0C908300FC9B96 /* Exceptions for "EssentialApp" folder in "EssentialApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -79,15 +63,6 @@
 		327180AF2F114EC000155248 /* EssentialAppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = EssentialAppTests;
-			sourceTree = "<group>";
-		};
-		327183A72F130BD000155248 /* Helpers */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				327183AC2F130C3B00155248 /* Exceptions for "Helpers" folder in "EssentialApp" target */,
-				327183AD2F130C3B00155248 /* Exceptions for "Helpers" folder in "EssentialAppTests" target */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		32C7F4FD2F0C908200FC9B96 /* EssentialApp */ = {
@@ -132,7 +107,6 @@
 		32C7F4F22F0C908200FC9B96 = {
 			isa = PBXGroup;
 			children = (
-				327183A72F130BD000155248 /* Helpers */,
 				327183A52F130B7A00155248 /* FeedImageDataLoaderWithFallbackComosite.swift */,
 				327183A02F12E59000155248 /* FeedLoaderWithFallbackComposite.swift */,
 				32C7F4FD2F0C908200FC9B96 /* EssentialApp */,
@@ -191,7 +165,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				327183A72F130BD000155248 /* Helpers */,
 				32C7F4FD2F0C908200FC9B96 /* EssentialApp */,
 			);
 			name = EssentialApp;
