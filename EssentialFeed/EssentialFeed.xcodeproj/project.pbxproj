@@ -75,6 +75,7 @@
 		3218B5C12E4D1817000994C7 /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3218B5CA2E4D1817000994C7 /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3218B6952E4D2679000994C7 /* CI_iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI_iOS.xctestplan; sourceTree = "<group>"; };
+		32D4CA2B2EF8B6A70015B70D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 		32DD1D8E2E301AE100CF936D /* EssentialFeedCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F746A7082DC07216007CC255 /* EssentialFeedAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F746A7142DC07AFB007CC255 /* CI_macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI_macOS.xctestplan; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Feed Cache/Helpers/FeedCacheTestHelpers.swift",
+				"Feed Cache/Helpers/FeedImageDataStoreSpy.swift",
 				Helpers/SharedTestHelpers.swift,
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
 			);
@@ -116,10 +118,15 @@
 		F7A6D7B22D84AAB700F10445 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"Feed API/Helpers/HTTPClientSpy.swift",
+				"Feed API/Helpers/URLProtocolStub.swift",
 				"Feed API/LoadFeedFromRemoteUseCaseTests.swift",
+				"Feed API/LoadFeedImageDataFromRemoteUseCaseTests.swift",
 				"Feed API/URLSessionHTTPClientTests.swift",
+				"Feed Cache/CacheFeedImageDatauseCaseTests.swift",
 				"Feed Cache/CacheFeedUseCaseTests.swift",
 				"Feed Cache/CodableFeedStoreTests.swift",
+				"Feed Cache/CoreDataFeedImageDataStoreTests.swift",
 				"Feed Cache/CoreDataFeedStoreTests.swift",
 				"Feed Cache/FeedStoreSpecs/FeedStoreSpecs.swift",
 				"Feed Cache/FeedStoreSpecs/XCTestCase+FailableDeleteFeedStoreSpecs.swift",
@@ -127,8 +134,10 @@
 				"Feed Cache/FeedStoreSpecs/XCTestCase+FailableRetrieveFeedStoreSpecs.swift",
 				"Feed Cache/FeedStoreSpecs/XCTestCase+FeedStoreSpecs.swift",
 				"Feed Cache/Helpers/FeedCacheTestHelpers.swift",
+				"Feed Cache/Helpers/FeedImageDataStoreSpy.swift",
 				"Feed Cache/Helpers/FeedStoreSpy.swift",
 				"Feed Cache/LoadFeedFromCacheUseCaseTests.swift",
+				"Feed Cache/LoadFeedImageDataFromCacheUseCaseTests.swift",
 				"Feed Cache/ValidateFeedCacheUseCaseTests.swift",
 				"Feed Presentation/FeedImagePresenterTests.swift",
 				"Feed Presentation/FeedLocalizationTests.swift",
@@ -203,6 +212,7 @@
 		080EDEE721B6DA7E00813479 = {
 			isa = PBXGroup;
 			children = (
+				32D4CA2B2EF8B6A70015B70D /* README.md */,
 				3218B4072E4BF24A000994C7 /* EssentialFeedCacheIntegrationTests.xctestplan */,
 				3218B3AC2E4BF058000994C7 /* EssentialFeedAPIEndToEndTests.xctestplan */,
 				F7BFE0C32DC27022000718B8 /* EssentialFeed.xctestplan */,
