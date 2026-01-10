@@ -53,6 +53,7 @@
 		327183AC2F130C3B00155248 /* Exceptions for "Helpers" folder in "EssentialApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				SharedTestHelpers.swift,
 				"XCTestCase+MemoryLeakTracking.swift",
 			);
 			target = 32C7F4FA2F0C908200FC9B96 /* EssentialApp */;
@@ -60,6 +61,7 @@
 		327183AD2F130C3B00155248 /* Exceptions for "Helpers" folder in "EssentialAppTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				SharedTestHelpers.swift,
 				"XCTestCase+MemoryLeakTracking.swift",
 			);
 			target = 327180AD2F114EC000155248 /* EssentialAppTests */;
