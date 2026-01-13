@@ -1,5 +1,5 @@
 //
-//  FeeedLoaderStub.swift
+//  FeedLoaderStub.swift
 //  EssentialApp
 //
 //  Created by Fer Benavides Rodriguez on 13/01/26.
@@ -7,7 +7,7 @@
 
 import EssentialFeed
 
-final class FeeedLoaderStub: FeedLoader {
+final class FeedLoaderStub: FeedLoader {
     private let result: FeedLoader.Result
     
     init(result: FeedLoader.Result) {
