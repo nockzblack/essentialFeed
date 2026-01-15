@@ -30,7 +30,7 @@ extension LocalFeedImageDataLoader: FeedImageDataCache {
     }
 }
 
-extension LocalFeedImageDataLoader {
+extension LocalFeedImageDataLoader: FeedImageDataLoader {
     public typealias LoadResult = FeedImageDataLoader.Result
     
     public enum LoadError: Swift.Error {
