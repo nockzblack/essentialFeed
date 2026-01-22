@@ -7,6 +7,7 @@
 
 import UIKit
 import EssentialFeed
+import EssentialFeediOS
 
 public final class FeedUIComposer {
     private init() {}
@@ -15,7 +16,7 @@ public final class FeedUIComposer {
         
         let presentationAdapter = FeedLoaderPresentationAdapter(feedLoader: MainQueueDispatchDecorator(decoratee: feedLoader))
         
-        let feedController = FeedViewController.makeWith(delegate: presentationAdapter, tittle: FeedPresenter.title)
+        let feedController = makeFeedViewController(delegate: presentationAdapter, tittle: FeedPresenter.title)
         
         let presenter = FeedPresenter(
             loadingView: WeakRefVirtualProxy(feedController),
@@ -26,10 +27,8 @@ public final class FeedUIComposer {
         
         return feedController
     }
-}
-
-private extension FeedViewController {
-    static func makeWith(delegate: FeedViewControllerDelegate, tittle: String) -> FeedViewController {
+    
+    private static func makeFeedViewController(delegate: FeedViewControllerDelegate, tittle: String) -> FeedViewController {
         let bundle = Bundle(for: FeedViewController.self)
         let storyboard = UIStoryboard(name: "Feed", bundle: bundle)
         let feedController = storyboard.instantiateInitialViewController() as! FeedViewController
