@@ -35,21 +35,6 @@
       "parallelizable" : false,
       "target" : {
         "containerPath" : "container:EssentialFeed\/EssentialFeed.xcodeproj",
-        "identifier" : "3218B5C92E4D1817000994C7",
-        "name" : "EssentialFeediOSTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:EssentialApp\/EssentialApp.xcodeproj",
-        "identifier" : "32E790FE2F17FFD60084F244",
-        "name" : "EssentialAppUIAcceptanceTests"
-      }
-    },
-    {
-      "parallelizable" : false,
-      "target" : {
-        "containerPath" : "container:EssentialFeed\/EssentialFeed.xcodeproj",
         "identifier" : "080EDEF921B6DA7E00813479",
         "name" : "EssentialFeedTests"
       }
