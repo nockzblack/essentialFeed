@@ -62,7 +62,9 @@ final class FeedAcceptanceTests: XCTestCase {
         store: InMemoryFeedStore = .empty
     ) -> FeedViewController {
         let sut = SceneDelegate(httpClient: httpClient, store: store)
-        sut.window = UIWindow()
+        let window = (UIApplication.shared.connectedScenes.first as! UIWindowScene).windows.first
+        sut.window = window
+        
         sut.configureWindow()
         
         let nav = sut.window?.rootViewController as? UINavigationController
