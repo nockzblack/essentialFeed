@@ -33,15 +33,6 @@
   "testTargets" : [
     {
       "parallelizable" : false,
-      "skippedTests" : [
-        "URLSessionHTTPClientTests",
-        "URLSessionHTTPClientTests\/test_cancelGetFromURLTask_cancelsURLRequest()",
-        "URLSessionHTTPClientTests\/test_getFromURL_failsOnAllInvalidRepresentationCases()",
-        "URLSessionHTTPClientTests\/test_getFromURL_failsOnRequestError()",
-        "URLSessionHTTPClientTests\/test_getFromURL_perfromsGETRequestWithURL()",
-        "URLSessionHTTPClientTests\/test_getFromURl_suceedsOnHTTPURLResponseWithData()",
-        "URLSessionHTTPClientTests\/test_getFromURl_suceedsWithEmptyDataOnHTTPURLResponseWithNilData()"
-      ],
       "target" : {
         "containerPath" : "container:EssentialFeed\/EssentialFeed.xcodeproj",
         "identifier" : "080EDEF921B6DA7E00813479",
