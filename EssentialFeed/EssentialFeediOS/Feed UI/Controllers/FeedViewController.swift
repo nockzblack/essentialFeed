@@ -8,14 +8,18 @@
 import UIKit
 import EssentialFeed
 
-protocol FeedViewControllerDelegate {
+public protocol FeedViewControllerDelegate {
     func didRequestFeedRefresh()
 }
 
 final public class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, FeedLoadingView, FeedErrorView {
-    var delegate: FeedViewControllerDelegate?
     @IBOutlet private(set) public var errorView: ErrorView?
-    var tableModel = [FeedImageCellController]() {
+    
+    private var loadingControllers = [IndexPath : FeedImageCellController]()
+    
+    public var delegate: FeedViewControllerDelegate?
+    
+    private var tableModel = [FeedImageCellController]() {
         didSet { tableView.reloadData() }
     }
     
@@ -23,7 +27,12 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
         delegate?.didRequestFeedRefresh()
     }
     
-    public func display(_ viewModel: FeedLoadingViewModel) {                
+    public func display(_ cellControllers: [FeedImageCellController]) {
+        loadingControllers = [:]
+        tableModel = cellControllers
+    }
+    
+    public func display(_ viewModel: FeedLoadingViewModel) {
         refreshControl?.update(isRefreshing: viewModel.isLoading)
     }
     
@@ -34,6 +43,12 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
     public override func viewDidLoad() {
         super.viewDidLoad()
         refresh()
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.sizeTableHeaderToFit()
     }
     
     public override func viewIsAppearing(_ animated: Bool) {
@@ -65,11 +80,13 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
     }
     
     private func cancelCellControllerLoad(forRowAt indexPath: IndexPath) {
-        cellController(forRowAt: indexPath).cancelLoad()
+        loadingControllers[indexPath]?.cancelLoad()
+        loadingControllers[indexPath] = nil
     }
     
     private func cellController(forRowAt indexPath: IndexPath) -> FeedImageCellController {
-        return tableModel[indexPath.row]
-
+        let controller = tableModel[indexPath.row]
+        loadingControllers[indexPath] = controller
+        return controller
     }
 }

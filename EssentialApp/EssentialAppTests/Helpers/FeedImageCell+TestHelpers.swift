@@ -7,6 +7,7 @@
 
 import EssentialFeediOS
 import Foundation
+import UIKit
 
 extension FeedImageCell {
     var isShowingLocation: Bool {

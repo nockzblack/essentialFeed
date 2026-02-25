@@ -11,7 +11,7 @@ jobs:
   # This workflow contains a single job called "build-and-test"
   build-and-test:
     # The type of runner that the job will run on
-    runs-on: macos-15
+    runs-on: macos-15-xlarge
 
     timeout-minutes: 8
 
@@ -31,8 +31,9 @@ jobs:
         xcodebuild clean build test \
           -workspace EssentialWorkspace.xcworkspace \
           -scheme "CI_iOS" \
-          CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO \
           -sdk iphonesimulator \
           -destination "platform=iOS Simulator,OS=26.0.1,name=iPhone 17" \
+          -parallel-testing-enabled NO \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
           ONLY_ACTIVE_ARCH=YES
