@@ -31,8 +31,9 @@ jobs:
         xcodebuild clean build test \
           -workspace EssentialWorkspace.xcworkspace \
           -scheme "CI_iOS" \
-          CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO \
           -sdk iphonesimulator \
           -destination "platform=iOS Simulator,OS=26.0.1,name=iPhone 17" \
+          -parallel-testing-enabled NO \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
           ONLY_ACTIVE_ARCH=YES
