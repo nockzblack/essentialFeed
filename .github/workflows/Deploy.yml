@@ -2,7 +2,7 @@ name: Deploy to App Store
 
 # This workflow triggers every time you push to the 'master' branch.
 on:
-  push:
+  pull_request:
     branches: [ master ]
 
 jobs:
@@ -28,10 +28,10 @@ jobs:
           echo "${{ secrets.APPSTORE_P8_KEY }}" > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
 
       - name: Set Build Number
-        # 'agvtool' updates the CFBundleVersion (build number) in all targets.
-        # We use the GitHub Run Number to ensure every upload has a unique ID, preventing Apple rejections.
+        # We 'cd' into the project folder so agvtool can find the .xcodeproj file.
+        # Replace 'EssentialApp' with the actual folder name if it's different.
         run: |
-          xcrun agvtool new-version -all ${{ github.run_number }}
+          cd EssentialApp && xcrun agvtool new-version -all ${{ github.run_number }}
 
       - name: Archive App
         # STEP 1: Compilation. This creates the .xcarchive (the "master mold" of the app).
