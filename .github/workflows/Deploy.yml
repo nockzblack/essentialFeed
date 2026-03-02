@@ -1,0 +1,59 @@
+
+name: Deploy
+
+# Controls when the action will run. Triggers the workflow on push events
+# but only for the master branch
+on:
+  push:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build-and-deploy"
+  build-and-deploy:
+    # The type of runner that the job will run on
+    runs-on: macos-15
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v4
+
+   - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_26.0.1.app
+
+    - name: Setup App Store Connect API Key
+      run: |
+        # Create a private folder and save the .p8 key
+        mkdir -p ~/.appstoreconnect/private_keys
+        echo "${{ secrets.APPSTORE_P8_KEY }}" > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
+
+    - name: Set Build Number
+      run: |
+        # Use the GitHub exec number as build number to avoid duplications in the App Store
+        xcrun agvtool new-version -all ${{ github.run_number }}
+
+    - name: Archive App
+      run: |
+        xcodebuild clean archive \
+          -workspace EssentialWorkspace.xcworkspace \
+          -scheme "EssentialApp" \
+          -configuration "Release" \
+          -sdk iphoneos \
+          -archivePath "DerivedData/Archive/EssentialApp.xcarchive" \
+          -allowProvisioningUpdates \
+          -authenticationKeyID "${{ secrets.APPSTORE_KEY_ID }}" \
+          -authenticationKeyIssuerID "${{ secrets.APPSTORE_ISSUER_ID }}" \
+          -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
+
+    - name: Export and Upload to App Store
+      run: |
+        xcodebuild -exportArchive \
+          -archivePath "DerivedData/Archive/EssentialApp.xcarchive" \
+          -exportPath "DerivedData/ipa" \
+          -exportOptionsPlist "ExportOptions.plist" \
+          -allowProvisioningUpdates \
+          -authenticationKeyID "${{ secrets.APPSTORE_KEY_ID }}" \
+          -authenticationKeyIssuerID "${{ secrets.APPSTORE_ISSUER_ID }}" \
+          -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
