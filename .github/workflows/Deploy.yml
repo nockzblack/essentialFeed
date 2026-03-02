@@ -2,7 +2,7 @@ name: Deploy to App Store
 
 # This workflow triggers every time you push to the 'master' branch.
 on:
-  push:
+  pull_request:
     branches: [ master ]
 
 jobs:
