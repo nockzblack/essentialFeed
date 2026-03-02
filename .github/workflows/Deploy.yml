@@ -30,7 +30,7 @@ jobs:
       - name: Set Build Number
         # 'agvtool' updates the CFBundleVersion (build number) in all targets.
         # We use the GitHub Run Number to ensure every upload has a unique ID, preventing Apple rejections.
-	run: |
+        run: |
           cd EssentialApp && xcrun agvtool new-version -all ${{ github.run_number }}
 
       - name: Archive App
