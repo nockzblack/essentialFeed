@@ -31,7 +31,7 @@ jobs:
         # 'agvtool' updates the CFBundleVersion (build number) in all targets.
         # We use the GitHub Run Number to ensure every upload has a unique ID, preventing Apple rejections.
         run: |
-          xcrun agvtool new-version -all ${{ github.run_number }}
+          cd EssentialApp && xcrun agvtool new-version -all ${{ github.run_number }}
 
       - name: Archive App
         # STEP 1: Compilation. This creates the .xcarchive (the "master mold" of the app).
@@ -43,4 +43,20 @@ jobs:
             -configuration "Release" \
             -sdk iphoneos \
             -archivePath "DerivedData/Archive/EssentialApp.xcarchive" \
-            -allowProvision
+            -allowProvisioningUpdates \
+            -authenticationKeyID "${{ secrets.APPSTORE_KEY_ID }}" \
+            -authenticationKeyIssuerID "${{ secrets.APPSTORE_ISSUER_ID }}" \
+            -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
+
+      - name: Export and Upload to App Store
+        # STEP 2: Distribution. Converts the Archive into an .ipa and uploads it to App Store Connect.
+        # The 'ExportOptions.plist' must contain 'destination: upload' for this step to initiate the upload.
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath "DerivedData/Archive/EssentialApp.xcarchive" \
+            -exportPath "DerivedData/ipa" \
+            -exportOptionsPlist ".github/deployment/ExportOptions.plist" \
+            -allowProvisioningUpdates \
+            -authenticationKeyID "${{ secrets.APPSTORE_KEY_ID }}" \
+            -authenticationKeyIssuerID "${{ secrets.APPSTORE_ISSUER_ID }}" \
+            -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APPSTORE_KEY_ID }}.p8
