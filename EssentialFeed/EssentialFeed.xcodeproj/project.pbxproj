@@ -107,6 +107,7 @@
 				"Feed API/Helpers/URLProtocolStub.swift",
 				"Feed API/LoadFeedFromRemoteUseCaseTests.swift",
 				"Feed API/LoadFeedImageDataFromRemoteUseCaseTests.swift",
+				"Feed API/LoadImageCommentsFromRemoteUseCaseTests.swift",
 				"Feed API/URLSessionHTTPClientTests.swift",
 				"Feed Cache/CacheFeedImageDatauseCaseTests.swift",
 				"Feed Cache/CacheFeedUseCaseTests.swift",
