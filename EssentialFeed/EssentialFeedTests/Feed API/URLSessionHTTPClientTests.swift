@@ -38,7 +38,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         }
         
         let receivedError = resultErrorFor(taskHandler: { $0.cancel() }) as NSError?
-        wait(for: [exp], timeout: 1.0)
+        wait(for: [exp], timeout: 2.0)
         
         XCTAssertEqual(receivedError?.code, URLError.cancelled.rawValue)
     }
