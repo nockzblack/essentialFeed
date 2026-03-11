@@ -105,7 +105,6 @@
 			membershipExceptions = (
 				"Feed API/LoadFeedFromRemoteUseCaseTests.swift",
 				"Feed API/LoadFeedImageDataFromRemoteUseCaseTests.swift",
-				"Feed API/LoadImageCommentsFromRemoteUseCaseTests.swift",
 				"Feed Cache/CacheFeedImageDatauseCaseTests.swift",
 				"Feed Cache/CacheFeedUseCaseTests.swift",
 				"Feed Cache/CodableFeedStoreTests.swift",
@@ -127,6 +126,7 @@
 				"Feed Presentation/FeedPresenterTests.swift",
 				Helpers/SharedTestHelpers.swift,
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
+				"Image Comments API/LoadImageCommentsFromRemoteUseCaseTests.swift",
 				"Shared API Infra/Helpers/URLProtocolStub.swift",
 				"Shared API Infra/URLSessionHTTPClientTests.swift",
 				"Shared API/Helpers/HTTPClientSpy.swift",
