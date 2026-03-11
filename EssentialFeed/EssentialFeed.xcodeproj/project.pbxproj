@@ -130,6 +130,7 @@
 				"Shared API Infra/Helpers/URLProtocolStub.swift",
 				"Shared API Infra/URLSessionHTTPClientTests.swift",
 				"Shared API/Helpers/HTTPClientSpy.swift",
+				"Shared API/RemoteLoaderTests.swift",
 			);
 			target = 080EDEF921B6DA7E00813479 /* EssentialFeedTests */;
 		};
