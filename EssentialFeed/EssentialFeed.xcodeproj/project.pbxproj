@@ -103,7 +103,7 @@
 		F7A6D7B22D84AAB700F10445 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"Feed API/LoadFeedFromRemoteUseCaseTests.swift",
+				"Feed API/FeedItemsMapperTests.swift",
 				"Feed API/LoadFeedImageDataFromRemoteUseCaseTests.swift",
 				"Feed Cache/CacheFeedImageDatauseCaseTests.swift",
 				"Feed Cache/CacheFeedUseCaseTests.swift",
