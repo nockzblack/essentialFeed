@@ -126,7 +126,7 @@
 				"Feed Presentation/FeedPresenterTests.swift",
 				Helpers/SharedTestHelpers.swift,
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
-				"Image Comments API/LoadImageCommentsFromRemoteUseCaseTests.swift",
+				"Image Comments API/ImageComemntsMapperTests.swift",
 				"Shared API Infra/Helpers/URLProtocolStub.swift",
 				"Shared API Infra/URLSessionHTTPClientTests.swift",
 				"Shared API/Helpers/HTTPClientSpy.swift",
