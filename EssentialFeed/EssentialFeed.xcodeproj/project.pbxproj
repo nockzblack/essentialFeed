@@ -103,11 +103,8 @@
 		F7A6D7B22D84AAB700F10445 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"Feed API/Helpers/HTTPClientSpy.swift",
-				"Feed API/Helpers/URLProtocolStub.swift",
-				"Feed API/LoadFeedFromRemoteUseCaseTests.swift",
+				"Feed API/FeedItemsMapperTests.swift",
 				"Feed API/LoadFeedImageDataFromRemoteUseCaseTests.swift",
-				"Feed API/URLSessionHTTPClientTests.swift",
 				"Feed Cache/CacheFeedImageDatauseCaseTests.swift",
 				"Feed Cache/CacheFeedUseCaseTests.swift",
 				"Feed Cache/CodableFeedStoreTests.swift",
@@ -129,6 +126,10 @@
 				"Feed Presentation/FeedPresenterTests.swift",
 				Helpers/SharedTestHelpers.swift,
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
+				"Image Comments API/ImageComemntsMapperTests.swift",
+				"Shared API Infra/Helpers/URLProtocolStub.swift",
+				"Shared API Infra/URLSessionHTTPClientTests.swift",
+				"Shared API/Helpers/HTTPClientSpy.swift",
 			);
 			target = 080EDEF921B6DA7E00813479 /* EssentialFeedTests */;
 		};
