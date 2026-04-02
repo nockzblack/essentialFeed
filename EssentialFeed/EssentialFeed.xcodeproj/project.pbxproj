@@ -131,6 +131,7 @@
 				"Shared API Infra/URLSessionHTTPClientTests.swift",
 				"Shared API/Helpers/HTTPClientSpy.swift",
 				"Shared Presentation/LoadResourcePresenterTests.swift",
+				"Shared Presentation/SharedLocalizationTests.swift",
 			);
 			target = 080EDEF921B6DA7E00813479 /* EssentialFeedTests */;
 		};
