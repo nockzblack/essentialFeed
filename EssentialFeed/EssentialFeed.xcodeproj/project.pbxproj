@@ -71,6 +71,7 @@
 		321985B62E4FA4EA0058DFD4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Helpers/SharedLocalizationTestsHelpers.swift,
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
 			);
 			target = 3218B5C92E4D1817000994C7 /* EssentialFeediOSTests */;
@@ -80,6 +81,7 @@
 			membershipExceptions = (
 				"Feed Cache/Helpers/FeedCacheTestHelpers.swift",
 				"Feed Cache/Helpers/FeedImageDataStoreSpy.swift",
+				Helpers/SharedLocalizationTestsHelpers.swift,
 				Helpers/SharedTestHelpers.swift,
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
 			);
@@ -88,6 +90,7 @@
 		F746A7132DC07938007CC255 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Helpers/SharedLocalizationTestsHelpers.swift,
 				Helpers/SharedTestHelpers.swift,
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
 			);
@@ -124,6 +127,7 @@
 				"Feed Presentation/FeedImagePresenterTests.swift",
 				"Feed Presentation/FeedLocalizationTests.swift",
 				"Feed Presentation/FeedPresenterTests.swift",
+				Helpers/SharedLocalizationTestsHelpers.swift,
 				Helpers/SharedTestHelpers.swift,
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
 				"Image Comments API/ImageComemntsMapperTests.swift",
