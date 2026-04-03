@@ -16,14 +16,14 @@ public protocol ResourceView {
 public final class LoadResourcePresenter<Resource, View: ResourceView> {
     public typealias Mapper = (Resource) -> View.ResourceViewModel
     
-    private let loadingView: FeedLoadingView
+    private let loadingView: ResourceLoadingView
     private let resourceView: View
     private let errorView: FeedErrorView
     private let mapper: Mapper
     
-    public init(loadingView: FeedLoadingView, feedView: View, errorView: FeedErrorView, mapper: @escaping Mapper) {
+    public init(loadingView: ResourceLoadingView, resourceView: View, errorView: FeedErrorView, mapper: @escaping Mapper) {
         self.loadingView = loadingView
-        self.resourceView = feedView
+        self.resourceView = resourceView
         self.errorView = errorView
         self.mapper = mapper
     }
@@ -38,16 +38,16 @@ public final class LoadResourcePresenter<Resource, View: ResourceView> {
     
     public func didStartLoading() {
         errorView.display(.noError)
-        loadingView.display(FeedLoadingViewModel(isLoading: true))
+        loadingView.display(ResourceLoadingViewModel(isLoading: true))
     }
     
     public func didFinishLoading(with resource: Resource) {
-        loadingView.display(FeedLoadingViewModel(isLoading: false))
+        loadingView.display(ResourceLoadingViewModel(isLoading: false))
         resourceView.display(mapper(resource))
     }
     
     public func didFinishLoading(with error: Error) {
         errorView.display(.error(message: Self.loadError))
-        loadingView.display(FeedLoadingViewModel(isLoading: false))
+        loadingView.display(ResourceLoadingViewModel(isLoading: false))
     }
 }
