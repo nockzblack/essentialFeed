@@ -14,7 +14,7 @@ public protocol ResourceView {
 }
 
 public final class LoadResourcePresenter<Resource, View: ResourceView> {
-    public typealias Mapper = (Resource) -> View.ResourceViewModel
+    public typealias Mapper = (Resource) throws -> View.ResourceViewModel
     
     private let loadingView: ResourceLoadingView
     private let resourceView: View
@@ -42,8 +42,12 @@ public final class LoadResourcePresenter<Resource, View: ResourceView> {
     }
     
     public func didFinishLoading(with resource: Resource) {
-        loadingView.display(ResourceLoadingViewModel(isLoading: false))
-        resourceView.display(mapper(resource))
+        do {
+            loadingView.display(ResourceLoadingViewModel(isLoading: false))
+            resourceView.display(try mapper(resource))
+        } catch {
+            didFinishLoading(with: error)
+        }
     }
     
     public func didFinishLoading(with error: Error) {
