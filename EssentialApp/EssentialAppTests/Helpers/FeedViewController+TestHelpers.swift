@@ -1,5 +1,5 @@
 //
-//  FeedViewController+TestHelpers.swift
+//  ListViewController+TestHelpers.swift
 //  EssentialFeed
 //
 //  Created by Fer Benavides Rodriguez on 10/09/25.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import EssentialFeediOS
 
-extension FeedViewController {
+extension ListViewController {
     var errorMessage: String? {
         return errorView?.message
     }
