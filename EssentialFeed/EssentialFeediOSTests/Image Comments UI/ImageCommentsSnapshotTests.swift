@@ -34,6 +34,10 @@ class ImageCommentsSnapshotTests: XCTestCase {
     }
     
     private func comments() -> [CellController] {
+        commentCotrolllers().map { CellController($0) }
+    }
+    
+    private func commentCotrolllers() -> [ImageCommentCellController] {
         return [
             ImageCommentCellController(
                 model: ImageCommentViewModel(
