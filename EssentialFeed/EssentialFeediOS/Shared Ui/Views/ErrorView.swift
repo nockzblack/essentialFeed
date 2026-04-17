@@ -8,7 +8,7 @@ import UIKit
 
 public final class ErrorView: UIButton {
     public var message: String? {
-        get { return isVisible ? title(for: .normal) : nil }
+        get { return isVisible ? configuration?.title : nil }
         set { setMessageAnimated(newValue) }
     }
     
@@ -23,20 +23,27 @@ public final class ErrorView: UIButton {
         super.init(coder: coder)
     }
     
-    private func configure() {
-        backgroundColor = UIColor(red: 1, green: 0.41799999999999998, blue: 0.41539999999999999, alpha: 1)
+    private var tittleAttributes: AttributeContainer {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.center
         
-        addTarget(self, action: #selector(hideMessageAnimated), for: .touchUpInside)
-        configureLabel()
-        hideMessage()
+        var attributes = AttributeContainer()
+        attributes.paragraphStyle = paragraphStyle
+        attributes.font = UIFont.preferredFont(forTextStyle: .body)
+        return attributes
     }
     
-    private func configureLabel() {
-        titleLabel?.textColor = .white
-        titleLabel?.textAlignment = .center
-        titleLabel?.numberOfLines = 0
-        titleLabel?.font = .preferredFont(forTextStyle: .body)
-        titleLabel?.adjustsFontForContentSizeCategory = true
+    private func configure() {
+        var configuration = Configuration.plain()
+        configuration.titlePadding = 0
+        configuration.baseForegroundColor = .white
+        configuration.background.backgroundColor = UIColor(red: 1, green: 0.41799999999999998, blue: 0.41539999999999999, alpha: 1)
+        configuration.background.cornerRadius = 0
+        self.configuration = configuration
+        
+        addTarget(self, action: #selector(hideMessageAnimated), for: .touchUpInside)
+        
+        hideMessage()
     }
     
     private var isVisible: Bool {
@@ -52,7 +59,8 @@ public final class ErrorView: UIButton {
     }
     
     private func showAnimated(_ message: String) {
-        setTitle(message, for: .normal)
+        configuration?.attributedTitle = AttributedString(message, attributes: tittleAttributes)
+        
         configuration?.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         UIView.animate(withDuration: 0.25) {
@@ -71,9 +79,9 @@ public final class ErrorView: UIButton {
     }
     
     private func hideMessage() {
-        setTitle(nil, for: .normal)
         alpha = 0
-        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        configuration?.attributedTitle = nil
+        configuration?.contentInsets = .zero
         onHide?()
     }
 }
