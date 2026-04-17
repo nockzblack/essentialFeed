@@ -19,7 +19,7 @@ public final class FeedUIComposer {
             
             let presentationAdapter = LoadResourcePresentationAdapter<[FeedImage], FeedViewAdapter>(loader: feedLoader)
             
-            let feedController = makeFeedViewController(tittle: FeedPresenter.title)
+            let feedController = makeFeedViewController(title: FeedPresenter.title)
             feedController.onRefresh = presentationAdapter.loadResource
             let presenter = LoadResourcePresenter(
                 loadingView: WeakRefVirtualProxy(feedController),

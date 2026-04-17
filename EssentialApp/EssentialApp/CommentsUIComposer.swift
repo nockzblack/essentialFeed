@@ -18,7 +18,7 @@ public final class CommentsUIComposer {
             
             let presentationAdapter = LoadResourcePresentationAdapter<[FeedImage], FeedViewAdapter>(loader: commentsLoader)
             
-            let feedController = makeFeedViewController(tittle: FeedPresenter.title)
+            let feedController = makeFeedViewController(title: ImageCommentsPresenter.title)
             feedController.onRefresh = presentationAdapter.loadResource
             let presenter = LoadResourcePresenter(
                 loadingView: WeakRefVirtualProxy(feedController),
@@ -33,11 +33,11 @@ public final class CommentsUIComposer {
             return feedController
         }
     
-    private static func makeFeedViewController(tittle: String) -> ListViewController {
+    private static func makeFeedViewController(title: String) -> ListViewController {
         let bundle = Bundle(for: ListViewController.self)
         let storyboard = UIStoryboard(name: "Feed", bundle: bundle)
         let feedController = storyboard.instantiateInitialViewController() as! ListViewController
-        feedController.title = FeedPresenter.title
+        feedController.title = title
         
         return feedController
     }
