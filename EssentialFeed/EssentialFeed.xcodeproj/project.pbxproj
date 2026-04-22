@@ -106,6 +106,7 @@
 		F7A6D7B22D84AAB700F10445 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"Feed API/FeedEndpointTests.swift",
 				"Feed API/FeedItemsMapperTests.swift",
 				"Feed API/LoadFeedImageDataFromRemoteUseCaseTests.swift",
 				"Feed Cache/CacheFeedImageDatauseCaseTests.swift",
@@ -131,6 +132,7 @@
 				Helpers/SharedTestHelpers.swift,
 				"Helpers/XCTestCase+MemoryLeakTracking.swift",
 				"Image Comments API/ImageComemntsMapperTests.swift",
+				"Image Comments API/ImageCommentsEndpointTests.swift",
 				"Image Comments Presentation/ImageCommentsLocalizationTests.swift",
 				"Image Comments Presentation/ImageCommentsPresenterTests.swift",
 				"Shared API Infra/Helpers/URLProtocolStub.swift",

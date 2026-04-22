@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         LocalFeedLoader(store: store, currentDate: Date.init)
     }()
     
-    private lazy var baseURL = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1")!
+    private lazy var baseURL = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed")!
     
     private lazy var navigationController = UINavigationController(rootViewController: FeedUIComposer.feedComposedWith(
         feedLoader: makeRemoteFeedLoaderWithLocalFallback,
@@ -59,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func showComments(for image: FeedImage) {
-        let remoteURL = baseURL.appendingPathComponent("/image/\(image.id)/comments")
+        let remoteURL = ImageCommentsEndpoint.get(image.id).url(baseURL: baseURL)
         let comments = CommentsUIComposer.commentsComposedWith(commentsLoader: makeRemoteCommentsLoader(url: remoteURL))
         navigationController.pushViewController(comments, animated: true)
     }
@@ -74,7 +74,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func makeRemoteFeedLoaderWithLocalFallback() -> AnyPublisher<[FeedImage], Error> {
-        let remoteURL = baseURL.appendingPathComponent("feed")
+        let remoteURL = FeedEndpoint.get.url(baseURL: baseURL)
         
         return httpClient
             .getPublisher(url: remoteURL)
