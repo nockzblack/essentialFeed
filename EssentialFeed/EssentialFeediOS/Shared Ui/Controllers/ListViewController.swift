@@ -19,6 +19,8 @@ final public class ListViewController: UITableViewController, UITableViewDataSou
         }
     }()
     
+    private var onViewIsAppearing: ((ListViewController) -> Void)?
+    
     @IBAction private func refresh() {
         onRefresh?()
     }
@@ -45,7 +47,17 @@ final public class ListViewController: UITableViewController, UITableViewDataSou
         tableView.dataSource = dataSource
         configureErrorView()
         configureTraitCollectionObservers()
-        refresh()
+        
+        onViewIsAppearing = { vc in
+            vc.onViewIsAppearing = nil
+            vc.refresh()
+        }
+    }
+    
+    public override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        
+        onViewIsAppearing?(self)
     }
     
     private func configureErrorView() {
@@ -82,12 +94,6 @@ final public class ListViewController: UITableViewController, UITableViewDataSou
         super.viewDidLayoutSubviews()
         
         tableView.sizeTableHeaderToFit()
-    }
-    
-    public override func viewIsAppearing(_ animated: Bool) {
-        super.viewIsAppearing(animated)
-        
-        refreshControl?.beginRefreshing()
     }
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

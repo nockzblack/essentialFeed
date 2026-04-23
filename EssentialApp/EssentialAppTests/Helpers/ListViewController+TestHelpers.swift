@@ -11,6 +11,35 @@ import EssentialFeediOS
 
 extension ListViewController {
     
+    func simulateAppearance() {
+        if !isViewLoaded {
+            loadViewIfNeeded()
+            prepareForFirstAppearance()
+        }
+        
+        beginAppearanceTransition(true, animated: false)
+        endAppearanceTransition()
+    }
+    
+    private func prepareForFirstAppearance() {
+        setSmallFrameToPreventRendeingCells()
+        repleaceRefreshControlWithFakeForiOS17Support()
+    }
+    
+    func repleaceRefreshControlWithFakeForiOS17Support() {
+        let fake = FakeRefreshControl()
+        refreshControl?.allTargets.forEach { target in
+            refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach { action in
+                fake.addTarget(target, action: Selector(action), for: .valueChanged)
+            }
+        }
+        refreshControl = fake
+    }
+    
+    private func setSmallFrameToPreventRendeingCells() {
+        tableView.frame = CGRect(x: 0, y: 0, width: 390, height: 1)
+    }
+    
     func simulateUserInitiatedReload() {
         refreshControl?.simulatePullToRefresh()
     }
@@ -129,22 +158,4 @@ extension ListViewController {
     }
     
     private var feedImagesSection: Int { 0 }
-    
-    func simulateAppearance() {
-        repleaceRefreshControlWithFakeForiOS17Support()
-        self.loadViewIfNeeded()
-        
-        self.beginAppearanceTransition(true, animated: false)
-        self.endAppearanceTransition()
-    }
-    
-    func repleaceRefreshControlWithFakeForiOS17Support() {
-        let fake = FakeRefreshControl()
-        refreshControl?.allTargets.forEach { target in
-            refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach { action in
-                fake.addTarget(target, action: Selector(action), for: .valueChanged)
-            }
-        }
-        refreshControl = fake
-    }
 }
