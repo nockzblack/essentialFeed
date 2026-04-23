@@ -76,17 +76,18 @@ struct SnapshotConfiguration {
             size: CGSize(width: 402, height: 874),
             safeAreaInsets: UIEdgeInsets(top: 62, left: 0, bottom: 34, right: 0),
             layoutMargins: UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0),
-            traitCollection: UITraitCollection(traitsFrom: [
-                .init(forceTouchCapability: .available),
-                .init(layoutDirection: .leftToRight),
-                .init(preferredContentSizeCategory: contentSize),
-                .init(userInterfaceIdiom: .phone),
-                .init(horizontalSizeClass: .compact),
-                .init(verticalSizeClass: .regular),
-                .init(displayScale: 2),
-                .init(displayGamut: .P3),
-                .init(userInterfaceStyle: style)
-            ]))
+            traitCollection: UITraitCollection( mutations: { traits in
+                traits.forceTouchCapability = .unavailable
+                traits.layoutDirection = .leftToRight
+                traits.preferredContentSizeCategory = contentSize
+                traits.userInterfaceIdiom = .phone
+                traits.horizontalSizeClass = .compact
+                traits.verticalSizeClass = .regular
+                traits.accessibilityContrast = .normal
+                traits.displayScale = 2
+                traits.displayGamut = .P3
+                traits.userInterfaceStyle = style
+            }))
     }
 }
 
@@ -103,11 +104,11 @@ private final class SnapshotWindow: UIWindow {
     }
     
     override var safeAreaInsets: UIEdgeInsets {
-        return configuration.safeAreaInsets
+        configuration.safeAreaInsets
     }
     
     override var traitCollection: UITraitCollection {
-        return UITraitCollection(traitsFrom: [super.traitCollection, configuration.traitCollection])
+        configuration.traitCollection
     }
     
     func snapshot() -> UIImage {
