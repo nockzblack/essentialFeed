@@ -84,7 +84,7 @@ struct SnapshotConfiguration {
                 traits.horizontalSizeClass = .compact
                 traits.verticalSizeClass = .regular
                 traits.accessibilityContrast = .normal
-                traits.displayScale = 2
+                traits.displayScale = 3
                 traits.displayGamut = .P3
                 traits.userInterfaceStyle = style
             }))
