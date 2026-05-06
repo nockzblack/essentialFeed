@@ -107,8 +107,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Feed API/FeedEndpointTests.swift",
+				"Feed API/FeedImageDataMapperTests.swift",
 				"Feed API/FeedItemsMapperTests.swift",
-				"Feed API/LoadFeedImageDataFromRemoteUseCaseTests.swift",
 				"Feed Cache/CacheFeedImageDatauseCaseTests.swift",
 				"Feed Cache/CacheFeedUseCaseTests.swift",
 				"Feed Cache/CodableFeedStoreTests.swift",
