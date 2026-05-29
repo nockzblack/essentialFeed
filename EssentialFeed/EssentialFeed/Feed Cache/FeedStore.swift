@@ -10,7 +10,7 @@ import Foundation
 public typealias CachedFeed = (feed: [LocalFeedImage], timestamp: Date)
 
 public protocol FeedStore {
-    func deleteCachedFeed() throws
+    func deleteCacheFeed() throws
     func insert(_ feed: [LocalFeedImage], timestamp: Date) throws
     func retrieve() throws -> CachedFeed?
     
@@ -34,11 +34,11 @@ public protocol FeedStore {
 }
 
 public extension FeedStore {
-    func deleteCachedFeed() throws {
+    func deleteCacheFeed() throws {
         let group = DispatchGroup()
         group.enter()
         var result: DeletionResult!
-        deleteCachedFeed {
+        deleteCacheFeed {
             result = $0
             group.leave()
         }
@@ -70,7 +70,7 @@ public extension FeedStore {
         return try result.get()
     }
     
-    func deleteCachedFeed(completion: @escaping DeletionCompletion) {}
+    func deleteCacheFeed(completion: @escaping DeletionCompletion) {}
     func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {}
     func retrieve(completion: @escaping RetrievalCompletion) {}
 }
