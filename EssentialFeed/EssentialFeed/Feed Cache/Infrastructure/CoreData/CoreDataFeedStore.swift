@@ -32,6 +32,10 @@ public final class CoreDataFeedStore {
         }
     }
     
+    public func perform(_ action: @escaping () -> Void) {
+        context.perform(action)
+    }
+    
     func performSync<R>(_ action: (NSManagedObjectContext) -> Result<R, Error>) throws -> R {
         let context = self.context
         var result: Result<R, Error>!
