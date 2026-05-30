@@ -15,6 +15,17 @@ import Combine
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
+    private lazy var scheduler: AnyDispatchQueueScheduler =  {
+        if let store = store as? CoreDataFeedStore {
+            return .scheduler(for:  store)
+        }
+        return DispatchQueue(
+            label: "com.essentialdeveloper.infra.queue",
+            qos: .userInitiated,
+            attributes: .concurrent)
+        .eraseToAnyScheduler()
+    }()
+    
     private lazy var httpClient: HTTPClient = {
         URLSessionHTTPClient(session:  URLSession(configuration: .ephemeral))
     }()
@@ -64,7 +75,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
-        localFeedLoader.validateCache { _ in }
+        scheduler.schedule { [localFeedLoader, logger] in
+            do {
+                try localFeedLoader.validateCache()
+            } catch {
+                logger.error("Failed to validate cache with error: \(error.localizedDescription)")
+            }
+        }
     }
     
     private func showComments(for image: FeedImage) {
@@ -84,6 +101,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func makeRemoteFeedLoaderWithLocalFallback() -> AnyPublisher<Paginated<FeedImage>, Error> {
         makeRemoteFeedLoader()
+            .receive(on: scheduler)
             .caching(to: localFeedLoader)
             .fallback(to: localFeedLoader.loadPublisher)
             .map(makeFirstPage)
@@ -97,7 +115,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 (cachedItems + newItems, newItems.last)
             }
             .map(makePage)
+            .receive(on: scheduler)
             .caching(to: localFeedLoader)
+            .subscribe(on: scheduler)
+            .eraseToAnyPublisher()
     }
     
     private func makeRemoteFeedLoader(after: FeedImage? = nil) -> AnyPublisher<[FeedImage], Error> {
@@ -123,11 +144,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let localImageLoader = LocalFeedImageDataLoader(store: store)
         
         return localImageLoader.loadImageDataPublisher(from: url)
-            .fallback { [httpClient] in
+            .fallback { [httpClient, scheduler] in
                 httpClient
                     .getPublisher(url: url)
                     .tryMap(FeedImageDataMapper.map)
+                    .receive(on: scheduler)
                     .caching(to: localImageLoader, using: url)
+                    .eraseToAnyPublisher()
             }
+            .subscribe(on: scheduler)
+            .eraseToAnyPublisher()
     }
 }

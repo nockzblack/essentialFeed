@@ -19,7 +19,7 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
     func test_load_requestCacheRetrieval() {
         let (sut, store) = makeSUT()
         
-        sut.load { _ in }
+        _ = try? sut.load()
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
@@ -76,18 +76,18 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
     
     func test_load_hasNoSideEffectsOnRetrievalError() {
         let (sut, store) = makeSUT()
-        
-        sut.load { _ in }
         store.completeRetrieval(with: anyNSError())
+        
+        _ = try? sut.load()
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
     func test_load_hasNoSideEffectsOnEmptyCache() {
         let (sut, store) = makeSUT()
-        
-        sut.load { _ in }
         store.completeRetrievalWithEmptyCache()
+        
+        _ = try? sut.load()
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
@@ -97,9 +97,9 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
         let feed = uniqueImageFeed()
         let fixedCurrentDate = Date()
         let nonExpiredCacheTimestamp = fixedCurrentDate.minusFeedCacheMaxAge().adding(seconds: 1)
-        
-        sut.load { _ in }
         store.completeRetrieval(with: feed.local, timestamp: nonExpiredCacheTimestamp)
+        
+        _ = try? sut.load()
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
@@ -109,9 +109,9 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
         let feed = uniqueImageFeed()
         let fixedCurrentDate = Date()
         let expirationTimestamp = fixedCurrentDate.minusFeedCacheMaxAge()
-        
-        sut.load { _ in }
         store.completeRetrieval(with: feed.local, timestamp: expirationTimestamp)
+        
+        _ = try? sut.load()
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
@@ -121,24 +121,11 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
         let feed = uniqueImageFeed()
         let fixedCurrentDate = Date()
         let expiredCache = fixedCurrentDate.minusFeedCacheMaxAge().adding(seconds: -1)
-        
-        sut.load { _ in }
         store.completeRetrieval(with: feed.local, timestamp: expiredCache)
         
+        _ = try? sut.load()
+       
         XCTAssertEqual(store.receivedMessages, [.retrieve])
-    }
-    
-    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-        let store = FeedStoreSpy()
-        var sut: LocalFeedLoader? = LocalFeedLoader(store: store, currentDate: Date.init)
-        
-        var receivedResults =  [LocalFeedLoader.LoadResult]()
-        sut?.load { receivedResults.append($0) }
-        
-        sut = nil
-        store.completeRetrievalWithEmptyCache()
-        
-        XCTAssertTrue(receivedResults.isEmpty)
     }
 
     
@@ -154,27 +141,23 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
         return (sut, store)
     }
     
-    private func expect(_ sut: LocalFeedLoader, toCompleteWith expectedResult: LocalFeedLoader.LoadResult, when action: () -> Void, file: StaticString = #file,
+    private func expect(_ sut: LocalFeedLoader, toCompleteWith expectedResult: Result<[FeedImage], Error>, when action: () -> Void, file: StaticString = #file,
                         line: UInt = #line) {
-        let exp = expectation(description: "Wait for load completion")
-        
-        sut.load { receivedResult in 
-            switch (receivedResult, expectedResult) {
-            case let (.success(receivedImages), .success(expectedImages)):
-                XCTAssertEqual(receivedImages, expectedImages)
-                
-                
-            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
-                XCTAssertEqual(receivedError, expectedError)
-                
-            default:
-                XCTFail("Expected result \(expectedResult), got \(receivedResult) instead")
-            }
-            exp.fulfill()
-        }
-        
         action()
-        wait(for: [exp], timeout: 1.0)
+        
+        let receivedResult = Result { try sut.load() }
+        
+        switch (receivedResult, expectedResult) {
+        case let (.success(receivedImages), .success(expectedImages)):
+            XCTAssertEqual(receivedImages, expectedImages)
+            
+            
+        case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
+            XCTAssertEqual(receivedError, expectedError)
+            
+        default:
+            XCTFail("Expected result \(expectedResult), got \(receivedResult) instead")
+        }
     }
     
 }
